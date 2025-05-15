@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş Yap</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    function validateForm() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+      if (email === "" || password === "") {
+        alert("Boş alan bırakmayınız.");
+        return false;
+      }
+
+      if (!emailPattern.test(email)) {
+        alert("Geçerli bir e-posta adresi giriniz.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Giriş Yap</h2>
+    <form action="login.php" method="POST" onsubmit="return validateForm();">
+      <label for="email">Kullanıcı Adı (E-posta):</label>
+      <input type="text" id="email" name="email">
+
+      <label for="password">Şifre:</label>
+      <input type="password" id="password" name="password">
+
+      <button type="submit">Giriş Yap</button>
+    </form>
+  </div>
+</body>
+</html>
