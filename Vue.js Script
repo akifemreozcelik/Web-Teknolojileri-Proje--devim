@@ -1,0 +1,32 @@
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    adsoyad: '',
+    email: '',
+    telefon: '',
+    konu: '',
+    mesaj: ''
+  },
+  methods: {
+    vueKontrol() {
+      if (!this.adsoyad || !this.email || !this.telefon || !this.mesaj) {
+        alert("Tüm alanlar doldurulmalıdır (Vue).");
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const telefonRegex = /^\d+$/;
+
+      if (!emailRegex.test(this.email)) {
+        alert("E-posta geçersiz (Vue).");
+        return;
+      }
+      if (!telefonRegex.test(this.telefon)) {
+        alert("Telefon yalnızca rakam içermelidir (Vue).");
+        return;
+      }
+      alert("Form geçerli görünüyor (Vue.js ile kontrol).");
+    }
+  }
+});
+</script>
