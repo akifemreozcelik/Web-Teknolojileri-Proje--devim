@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>İletişim</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script defer src="formKontrol.js"></script> <!-- Vue burada tanımlı -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Kişisel Site</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Menüyü Aç/Kapat">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav"> 
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="login.html">Giriş</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Hakkımda</a></li>
+          <li class="nav-item"><a class="nav-link" href="ozgecmis.html">Özgeçmiş</a></li>
+          <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+          <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
+          <li class="nav-item"><a class="nav-link" href="takim.html">Takımımız</a></li>
+          <li class="nav-item"><a class="nav-link" href="ilgiAlanlarim.html">İlgi Alanlarım</a></li>
+          <li class="nav-item"><a class="nav-link active" href="iletisim.html">İletişim</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="app">
+    <h2>İletişim Formu</h2>
+    <form action="iletisim-sonuc.php" method="post" id="iletisimForm">
+      <label>Ad Soyad:</label><br>
+      <input type="text" name="adsoyad" v-model="adsoyad"><br><br>
+
+      <label>Email:</label><br>
+      <input type="text" name="email" v-model="email"><br><br>
+
+      <label>Telefon:</label><br>
+      <input type="text" name="telefon" v-model="telefon"><br><br>
+
+      <label>Mesaj Konusu:</label><br>
+      <select name="konu" v-model="konu">
+        <option value="">Seçiniz</option>
+        <option>Öneri</option>
+        <option>Şikayet</option>
+        <option>Bilgi</option>
+      </select><br><br>
+
+      <label>Mesajınız:</label><br>
+      <textarea name="mesaj" v-model="mesaj"></textarea><br><br>
+
+      <!-- JS ile kontrol butonu -->
+      <button type="button" onclick="formKontrol()">JS İle Kontrol Et</button>
+
+      <!-- Vue ile kontrol butonu -->
+      <button type="button" @click="vueKontrol">Vue.js İle Kontrol Et</button>
+
+      <button type="reset">Temizle</button>
+      <button type="submit">Gönder</button>
+    </form>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      adsoyad: '',
+      email: '',
+      telefon: '',
+      konu: '',
+      mesaj: ''
+    },
+    methods: {
+      vueKontrol() {
+        if (
+          this.adsoyad.trim() === '' ||
+          this.email.trim() === '' ||
+          this.telefon.trim() === '' ||
+          this.konu.trim() === '' ||
+          this.mesaj.trim() === ''
+        ) {
+          alert("Lütfen tüm alanları doldurun. (Vue.js Kontrol)");
+        } else if (!this.email.includes("@") || !this.email.includes(".")) {
+          alert("Geçerli bir e-posta giriniz. (Vue.js Kontrol)");
+        } else {
+          alert("Tüm alanlar doğru dolduruldu. (Vue.js Kontrol)");
+        }
+      }
+    }
+  });
+</script>
+</html>
+
+
